@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @whiskey.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @whiskey.description %>
+</p>
+
+<p>
+  <strong>Taste:</strong>
+  <%= @whiskey.taste %>
+</p>
+
+<p>
+  <strong>Color:</strong>
+  <%= @whiskey.color %>
+</p>
+
+<p>
+  <strong>Smokiness:</strong>
+  <%= @whiskey.smokiness %>
+</p>
+
+<%= link_to 'Edit', edit_whiskey_path(@whiskey) %> |
+<%= link_to 'Back', whiskeys_path %>
