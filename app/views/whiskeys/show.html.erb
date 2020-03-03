@@ -2,12 +2,12 @@
 
 <p>
   <strong>Title:</strong>
-  <%= @whiskey.title %>
+  <%= CGI.escape_html @whiskey.title %>
 </p>
 
 <p>
   <strong>Description:</strong>
-  <%= @whiskey.description %>
+  <%= CGI.escape_html @whiskey.description %>
 </p>
 
 <p>

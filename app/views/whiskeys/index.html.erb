@@ -1,4 +1,38 @@
-<p id="notice"><%= notice %></p>
+<% flash.each do |name, msg| -%>
+  <%= content_tag :div, msg, class: name %>
+<% end -%>
+
+<h2>Filter By</h2>
+<%= form_with url: whiskeys_path, method: :get, local: true do %>
+  <div class="field">
+    <%= label_tag("whiskey[title]", :Title) %>
+    <%= text_field_tag("whiskey[title]") %>
+  </div>
+
+  <div class="field">
+    <%= label_tag("whiskey[description]", "Contains description") %>
+    <%= text_area_tag "whiskey[description]" %>
+  </div>
+
+  <div class="field">
+    <%= label_tag("whiskey[taste]", "Minimum taste") %>
+    <%= select_tag "whiskey[taste]", options_for_select((1..5).map{|i| [i,i]}) %>
+  </div>
+
+  <div class="field">
+    <%= label_tag("whiskey[color]", "Minimum color") %>
+    <%= select_tag "whiskey[color]", options_for_select((1..5).map{|i| [i,i]}) %>
+  </div>
+
+  <div class="field">
+    <%= label_tag("whiskey[smokiness]", "Minimum smokiness") %>
+    <%= select_tag "whiskey[smokiness]", options_for_select((1..5).map{|i| [i,i]}) %>
+  </div>
+
+  <div class="actions">
+    <%= submit_tag(:search) %>
+  </div>
+<% end %>
 
 <h1>Whiskeys</h1>
 
@@ -17,19 +51,39 @@
   <tbody>
     <% @whiskeys.each do |whiskey| %>
       <tr>
-        <td><%= whiskey.title %></td>
-        <td><%= whiskey.description %></td>
+        <td><%= CGI.escape_html whiskey.title %></td>
+        <td><%= CGI.escape_html whiskey.description %></td>
         <td><%= whiskey.taste %></td>
         <td><%= whiskey.color %></td>
         <td><%= whiskey.smokiness %></td>
         <td><%= link_to 'Show', whiskey %></td>
         <td><%= link_to 'Edit', edit_whiskey_path(whiskey) %></td>
-        <td><%= link_to 'Destroy', whiskey_path(whiskey), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', whiskey, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
+<%= will_paginate @whiskeys %>
 
 <%= link_to 'New Whiskey', {action: :new}, method: :get %>
+<br/><br/><br/>
+
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+
+    function decodeHtml(html) {
+        var txt = document.createElement("textarea");
+        txt.innerHTML = html;
+        return txt.value;
+    }
+
+    $( function() {
+        var availableTags = JSON.parse(decodeHtml("<%= @titles.to_json %>"))
+        $( "#whiskey_title" ).autocomplete({
+            source: availableTags
+        });
+    } );
+</script>

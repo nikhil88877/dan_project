@@ -2,10 +2,16 @@ class WhiskeysController < ApplicationController
   before_action :set_whiskey, only: %i[show edit update destroy]
 
   def index
-    @whiskeys = Whiskey.all
+    if params[:whiskey]
+      whiskey_params
+      @whiskeys = Whiskey.search(params[:whiskey]).paginate(page: params[:page], per_page: 2)
+    else
+      @whiskeys = Whiskey.paginate(page: params[:page], per_page: 2)
+    end
+    @titles = Whiskey.all.pluck(:title)
   end
 
-  def show;  end
+  def show; end
 
   def new
     @whiskey = Whiskey.new
