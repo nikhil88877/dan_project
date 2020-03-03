@@ -37,6 +37,11 @@ div.field,
 div.actions {
   margin-bottom: 10px; }
 
+div.field {
+  width:200px;
+  margin:10px 0;
+}
+
 .form > label
 {
   float: left;
@@ -94,3 +99,17 @@ tfoot tr:last-child td {
   border-bottom: 0;
 }
 
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.search-sidebar {
+  flex-basis: 20rem;
+  flex-grow: 1;
+}
+
+.list-view {
+  flex-basis: 0;
+  flex-grow: 999;
+}
