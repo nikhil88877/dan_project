@@ -14,11 +14,11 @@ class WhiskeysTest < ApplicationSystemTestCase
     visit whiskeys_url
     click_on 'New Whiskey'
 
-    select 'Color', with: @whiskey.color
+    select @whiskey.color, from: 'Color'
     fill_in 'Description', with: @whiskey.description
-    select 'Smokiness', with: @whiskey.smokiness
-    select 'Taste', with: @whiskey.taste
-    fill_in 'Title', with: @whiskey.title
+    select @whiskey.smokiness, from: 'Smokiness'
+    select @whiskey.taste, from: 'Taste'
+    fill_in 'Title', with: "New Whiskey"
     click_on 'Create Whiskey'
 
     assert_text 'Whiskey was successfully created'
@@ -29,11 +29,10 @@ class WhiskeysTest < ApplicationSystemTestCase
     visit whiskeys_url
     click_on 'Edit', match: :first
 
-    select 'Color', with: @whiskey.color
+    select @whiskey.color, from: 'Color'
     fill_in 'Description', with: @whiskey.description
-    select 'Smokiness', with: @whiskey.smokiness
-    select 'Taste', with: @whiskey.taste
-    fill_in 'Title', with: @whiskey.title
+    select @whiskey.smokiness, from: 'Smokiness'
+    select @whiskey.taste, from: 'Taste'
     click_on 'Update Whiskey'
 
     assert_text 'Whiskey was successfully updated'

@@ -27,17 +27,17 @@
 
   <div class="field">
     <%= f.label :taste %>
-    <%= f.select :taste, options_for_select((1..5).map{|i| [i,i]}) %>
+    <%= f.select :taste, options_for_select((1..5).map{|i| [i,i]},whiskey.taste) %>
   </div>
 
   <div class="field">
     <%= f.label :color %>
-    <%= f.select :color, options_for_select((1..5).map{|i| [i,i]}) %>
+    <%= f.select :color, options_for_select((1..5).map{|i| [i,i]}, whiskey.color) %>
   </div>
 
   <div class="field">
     <%= f.label :smokiness %>
-    <%= f.select :smokiness, options_for_select((1..5).map{|i| [i,i]}) %>
+    <%= f.select :smokiness, options_for_select((1..5).map{|i| [i,i]}, whiskey.smokiness) %>
   </div>
 
   <div class="actions">

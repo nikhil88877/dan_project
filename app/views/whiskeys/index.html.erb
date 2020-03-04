@@ -1,94 +1,77 @@
 <% flash.each do |name, msg| -%>
   <%= content_tag :div, msg, class: name %>
 <% end -%>
-
 <div class="container">
   <div class="search-sidebar">
     <h2>Filter By</h2>
     <%= form_with url: whiskeys_path, method: :get, local: true do %>
       <div class="field">
-        <%= label_tag("whiskey[title]", :Title) %>
-        <%= text_field_tag("whiskey[title]") %>
+        <%= label_tag "whiskey[title]", "Title", class: 'form-label' %>
+        <%= text_field_tag "whiskey[title]", nil, class: 'form-input' %>
       </div>
-
       <div class="field">
-        <%= label_tag("whiskey[description]", "Contains description") %>
-        <%= text_area_tag "whiskey[description]" %>
+        <%= label_tag "whiskey[description]", "Contains description", class: 'form-label' %>
+        <%= text_area_tag "whiskey[description]", nil, class: 'form-input' %>
       </div>
-
       <div class="field">
-        <%= label_tag("whiskey[taste]", "Minimum taste") %>
-        <%= select_tag "whiskey[taste]", options_for_select((1..5).map{|i| [i,i]}) %>
+        <%= label_tag "whiskey[taste]", "Min taste", class: 'form-label' %>
+        <%= select_tag "whiskey[taste]", options_for_select((1..5).map{|i| [i,i]}), include_blank: "Choose", class: 'form-input' %>
       </div>
-
       <div class="field">
-        <%= label_tag("whiskey[color]", "Minimum color") %>
-        <%= select_tag "whiskey[color]", options_for_select((1..5).map{|i| [i,i]}) %>
+        <%= label_tag "whiskey[color]", "Min color", class: 'form-label' %>
+        <%= select_tag "whiskey[color]", options_for_select((1..5).map{|i| [i,i]}), include_blank: "Choose", class: 'form-input' %>
       </div>
-
       <div class="field">
-        <%= label_tag("whiskey[smokiness]", "Minimum smokiness") %>
-        <%= select_tag "whiskey[smokiness]", options_for_select((1..5).map{|i| [i,i]}) %>
+        <%= label_tag "whiskey[smokiness]", "Min smokiness", class: 'form-label' %>
+        <%= select_tag "whiskey[smokiness]", options_for_select((1..5).map{|i| [i,i]}), include_blank: "Choose", class: 'form-input' %>
       </div>
-
       <div class="actions">
         <%= submit_tag(:search) %>
       </div>
     <% end %>
   </div>
-
   <div class="list-view">
-
     <h1>Whiskeys</h1>
-
     <table>
       <thead>
-        <tr>
-          <th>Title</th>
-          <th>Description</th>
-          <th>Taste</th>
-          <th>Color</th>
-          <th>Smokiness</th>
-          <th colspan="3"></th>
-        </tr>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Taste</th>
+        <th>Color</th>
+        <th>Smokiness</th>
+        <th colspan="3"></th>
+      </tr>
       </thead>
-
       <tbody>
-        <% @whiskeys.each do |whiskey| %>
-          <tr>
-            <td><%= CGI.escape_html whiskey.title %></td>
-            <td><%= CGI.escape_html whiskey.description %></td>
-            <td><%= whiskey.taste %></td>
-            <td><%= whiskey.color %></td>
-            <td><%= whiskey.smokiness %></td>
-            <td><%= link_to 'Show', whiskey %></td>
-            <td><%= link_to 'Edit', edit_whiskey_path(whiskey) %></td>
-            <td><%= button_to 'Destroy', whiskey, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          </tr>
-        <% end %>
+      <% @whiskeys.each do |whiskey| %>
+        <tr>
+          <td><%= CGI.escape_html whiskey.title %></td>
+          <td><%= CGI.escape_html whiskey.description %></td>
+          <td><%= whiskey.taste %></td>
+          <td><%= whiskey.color %></td>
+          <td><%= whiskey.smokiness %></td>
+          <td><%= link_to 'Show', whiskey %></td>
+          <td><%= link_to 'Edit', edit_whiskey_path(whiskey) %></td>
+          <td><%= button_to 'Destroy', whiskey, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
       </tbody>
     </table>
-
     <%= will_paginate @whiskeys %>
   </div>
 </div>
-
-
 <%= link_to 'New Whiskey', {action: :new}, method: :get %>
 <br/><br/><br/>
-
-
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
-
     function decodeHtml(html) {
         var txt = document.createElement("textarea");
         txt.innerHTML = html;
         return txt.value;
     }
-
     $( function() {
         var availableTags = JSON.parse(decodeHtml("<%= @titles.to_json %>"))
         $( "#whiskey_title" ).autocomplete({

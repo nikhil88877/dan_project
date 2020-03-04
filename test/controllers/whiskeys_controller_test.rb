@@ -10,6 +10,11 @@ class WhiskeysControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test 'should show search result' do
+    get whiskeys_url, params: {whiskey: {color: 1, taste: 2}}
+    assert_response :success
+  end
+
   test 'should get new' do
     get new_whiskey_url
     assert_response :success
