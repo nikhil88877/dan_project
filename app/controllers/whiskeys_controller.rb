@@ -4,9 +4,9 @@ class WhiskeysController < ApplicationController
   def index
     if params[:whiskey]
       whiskey_params
-      @whiskeys = Whiskey.search(params[:whiskey]).paginate(page: params[:page], per_page: 2)
+      @whiskeys = Whiskey.search(params[:whiskey]).paginate(page: params[:page], per_page: 5)
     else
-      @whiskeys = Whiskey.paginate(page: params[:page], per_page: 2)
+      @whiskeys = Whiskey.paginate(page: params[:page], per_page: 5)
     end
     @titles = Whiskey.all.pluck(:title)
   end
