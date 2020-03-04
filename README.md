@@ -3,22 +3,21 @@
 
   Online website where user's can add their favourite whiskeys they have enjoyed in the past and grade them on the 
   basis of taste, color and smokiness. Also, they will be able search the whiskey on the same parameters. 
-
-##Prerequisites
-* Ruby version : Install latest version of Ruby(2.6.3)
-
-        rvm install ruby-2.6.3
         
-##Installation
+##  Installation
 * Clone project from GitHub : I have made the repository public. You should be able to clone in your system.
 
         git clone https://github.com/nikhil88877/dan_project.git
         cd dan_project
         
+* Ruby version : Install latest version of Ruby(2.6.3)
+
+        rvm install ruby-2.6.3
+
     
 * System dependencies: Install all the gems in the project
 
-        bundle install 
+        bundle install
 
 * Configuration : Make sure you have mysql server installed. Modify database.yml file with your mysql credentials. 
 
@@ -63,4 +62,6 @@ you can start the server using
            uses CGI.escape_html to show title or description
            
         6. Defined javascript method to handle data-confirm for 'Destroy' button_to method.
+        
+        7. Added Pagination for index page
             
