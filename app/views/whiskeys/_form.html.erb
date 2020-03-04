@@ -1,6 +1,6 @@
 <% unless whiskey.new_record? %>
-  <%= whiskey.title = CGI.escape_html whiskey.title %>
-  <%= whiskey.description = CGI.escape_html whiskey.description %>
+  <% whiskey.title = CGI.escape_html whiskey.title %>
+  <% whiskey.description = CGI.escape_html whiskey.description %>
 <% end %>
 <%= form_with(model: whiskey, local: true) do |f| %>
   <% if whiskey.errors.any? %>

@@ -12,7 +12,7 @@ class Whiskey < ApplicationRecord
 
   def self.search(params)
     query=[]
-    query[0] = "title = #{params[:title]}" if params[:title].present?
+    query[0] = "title = '#{params[:title]}'" if params[:title].present?
     query[1] = "description like '%#{params[:description]}%'" if params[:description].present?
     query[2] = "taste >= #{params[:taste]}" if params[:taste].present?
     query[3] = "color >= #{params[:color]}" if params[:color] .present?
