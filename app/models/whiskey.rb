@@ -1,6 +1,5 @@
 class Whiskey < ApplicationRecord
-  validates_presence_of :title
-  validates_uniqueness_of :title
+  validates :title, uniqueness: true, presence: true
   validate do
     # uses meta-programming to dry up the code
     %i[taste color smokiness].each do |col|

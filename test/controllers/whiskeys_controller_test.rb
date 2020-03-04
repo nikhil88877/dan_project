@@ -22,7 +22,7 @@ class WhiskeysControllerTest < ActionDispatch::IntegrationTest
 
   test 'should create whiskey' do
     assert_difference('Whiskey.count') do
-      post whiskeys_url, params: { whiskey: { color: @whiskey.color, description: @whiskey.description, smokiness: @whiskey.smokiness, taste: @whiskey.taste, title: @whiskey.title } }
+      post whiskeys_url, params: { whiskey: { color: @whiskey.color, description: @whiskey.description, smokiness: @whiskey.smokiness, taste: @whiskey.taste, title: "W3" } }
     end
 
     assert_redirected_to whiskey_url(Whiskey.last)
