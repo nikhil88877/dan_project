@@ -64,4 +64,7 @@ you can start the server using
         6. Defined javascript method to handle data-confirm for 'Destroy' button_to method.
         
         7. Added Pagination for index page
+        
+        8. Used Minitest which is deafult test library in rails instead of RSpec. 
+           It's fast, clean, and lets you choose between a pure Ruby test syntax and a an Rspec-style DSL 
             
