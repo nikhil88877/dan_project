@@ -7,7 +7,7 @@ class WhiskeysTest < ApplicationSystemTestCase
 
   test 'visiting the index' do
     visit whiskeys_url
-    assert_selector 'h1', text: 'Whiskeys'
+    assert_selector 'h1', text: 'WHISKEYS'
   end
 
   test 'creating a Whiskey' do

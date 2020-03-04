@@ -18,7 +18,7 @@
           <th>Taste</th>
           <th>Color</th>
           <th>Smokiness</th>
-          <th colspan="3"></th>
+          <th colspan="2"></th>
         </tr>
       </thead>
 
@@ -30,7 +30,6 @@
             <td><%= whiskey.taste %></td>
             <td><%= whiskey.color %></td>
             <td><%= whiskey.smokiness %></td>
-            <td><%= button_to 'Show', whiskey, method: :get %></td>
             <td><%= button_to 'Edit', edit_whiskey_path(whiskey), method: :get %></td>
             <td><%= button_to 'Destroy', whiskey, method: :delete, data: { confirm: "Are you sure?" } %></td>
           </tr>
