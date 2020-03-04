@@ -1,9 +1,48 @@
 <% flash.each do |name, msg| -%>
   <%= content_tag :div, msg, class: name %>
 <% end -%>
+
+<hr>
+
 <div class="container">
+
+  <div class="list-view">
+
+    <h1>WHISKEYS</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Taste</th>
+          <th>Color</th>
+          <th>Smokiness</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @whiskeys.each do |whiskey| %>
+          <tr>
+            <td><%= CGI.escape_html whiskey.title %></td>
+            <td><%= CGI.escape_html whiskey.description || '' %></td>
+            <td><%= whiskey.taste %></td>
+            <td><%= whiskey.color %></td>
+            <td><%= whiskey.smokiness %></td>
+            <td><%= button_to 'Show', whiskey, method: :get %></td>
+            <td><%= button_to 'Edit', edit_whiskey_path(whiskey), method: :get %></td>
+            <td><%= button_to 'Destroy', whiskey, method: :delete, data: { confirm: "Are you sure?" } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <%= will_paginate @whiskeys %>
+  </div>
+
   <div class="search-sidebar">
-    <h2>Filter By</h2>
+    <h2>FILTER BY</h2>
     <%= form_with url: whiskeys_path, method: :get, local: true do %>
       <div class="field">
         <%= label_tag "whiskey[title]", "Title", class: 'form-label' %>
@@ -26,43 +65,19 @@
         <%= select_tag "whiskey[smokiness]", options_for_select((1..5).map{|i| [i,i]}), include_blank: "Choose", class: 'form-input' %>
       </div>
       <div class="actions">
-        <%= submit_tag(:search) %>
+        <%= submit_tag "Search", align: "center" %>
       </div>
     <% end %>
   </div>
-  <div class="list-view">
-    <h1>Whiskeys</h1>
-    <table>
-      <thead>
-      <tr>
-        <th>Title</th>
-        <th>Description</th>
-        <th>Taste</th>
-        <th>Color</th>
-        <th>Smokiness</th>
-        <th colspan="3"></th>
-      </tr>
-      </thead>
-      <tbody>
-      <% @whiskeys.each do |whiskey| %>
-        <tr>
-          <td><%= CGI.escape_html whiskey.title %></td>
-          <td><%= CGI.escape_html whiskey.description %></td>
-          <td><%= whiskey.taste %></td>
-          <td><%= whiskey.color %></td>
-          <td><%= whiskey.smokiness %></td>
-          <td><%= link_to 'Show', whiskey %></td>
-          <td><%= link_to 'Edit', edit_whiskey_path(whiskey) %></td>
-          <td><%= button_to 'Destroy', whiskey, method: :delete, data: { confirm: "Are you sure?" } %></td>
-        </tr>
-      <% end %>
-      </tbody>
-    </table>
-    <%= will_paginate @whiskeys %>
-  </div>
+
 </div>
-<%= link_to 'New Whiskey', {action: :new}, method: :get %>
-<br/><br/><br/>
+
+<hr>
+
+
+<%= button_to 'New Whiskey', {action: :new}, method: :get %>
+
+
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>

@@ -30,34 +30,18 @@ td {
   padding: 0 5px 7px; }
 
 td {
-text-align: center;
+  text-align: left;
 }
 
 div.field,
 div.actions {
   margin-bottom: 10px; }
 
-div.field {
-  width:200px;
-  margin:10px 0;
-}
-
 .form > label
 {
   float: left;
   clear: right;
 }
-
-.form > input
-{
-  float: right;
-}
-
-
-
-.notice {
-  color: green; }
-
 
 .field_with_errors {
   padding: 2px;
@@ -84,9 +68,6 @@ div.field {
   font-size: 12px;
   list-style: square; }
 
-label {
-  display: block; }
-
 table {
   border-collapse: collapse;
 }
@@ -95,8 +76,13 @@ td {
   border-bottom: 1px solid #cecfd5;
   padding: 10px 15px;
 }
+
 tfoot tr:last-child td {
   border-bottom: 0;
+}
+
+.notice {
+  color: green;
 }
 
 .container {
@@ -106,10 +92,33 @@ tfoot tr:last-child td {
 
 .search-sidebar {
   flex-basis: 20rem;
-  flex-grow: 1;
+  flex-grow: 2;
+  border-style: inset;
+  padding: 10px;
+  background-color: #D3D3D3;
 }
 
 .list-view {
   flex-basis: 0;
-  flex-grow: 999;
+  flex-grow: 998;
+  margin-left: 20px;
+  padding: 10px;
+}
+
+.form-label {
+    display: inline-block;
+    flex-grow: 1;
+    word-wrap: break-word;
+    max-width: 100px;
+}
+
+.form-input {
+    margin-left: 20px;
+    float: right;
+    flex-grow: 3;
+}
+
+.field {
+  display: flex;
+  flex-wrap: wrap;
 }
